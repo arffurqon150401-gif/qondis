@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barang Bekas — Seller Center & Jual Beli Barang Bekas</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono for tabular numbers/SKUs -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            },
+            darkbg: '#09090b',
+            darkcard: '#121215',
+            darkborder: '#27272a',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Enterprise Typography & Clean Scrollbars */
+    body {
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      -webkit-font-smoothing: antialiased;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(156, 163, 175, 0.4);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(156, 163, 175, 0.7);
+    }
+    /* Subtle transitions */
+    .theme-transition {
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] dark:bg-darkbg text-slate-900 dark:text-zinc-100 font-sans theme-transition min-h-screen flex flex-col selection:bg-brand-600 selection:text-white">
+
+  <!-- ==========================================
+       1. LOGIN VIEW (ENTERPRISE AUTHENTICATION)
+       ========================================== -->
+  <div id="login-view" class="min-h-screen flex flex-col lg:flex-row bg-white dark:bg-darkbg">
+    
+    <!-- Left Column: Brand & Trust Architecture -->
+    <div class="hidden lg:flex lg:w-5/12 bg-slate-900 dark:bg-zinc-900 text-white p-12 flex-col justify-between relative overflow-hidden border-r border-slate-800">
+      <!-- Subtle architectural grid pattern -->
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 32px 32px;"></div>
+      
+      <div class="relative z-10 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-lg tracking-tight shadow-sm">
+            BB
+          </div>
+          <div>
+            <span class="font-bold text-lg tracking-tight text-white">Barang Bekas</span>
+            <span class="ml-2 text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-emerald-400 border border-slate-700">Seller OS v2.5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-10 my-auto max-w-md">
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-emerald-950/60 border border-emerald-800/60 text-emerald-300 text-xs font-medium mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          Sistem Manajemen Jual Beli Barang Bekas
+        </div>
+        <h1 class="text-3xl font-bold tracking-tight text-white leading-snug mb-4">
+          Kelola stok jual beli barang bekas dengan rapi di HP maupun Laptop.
+        </h1>
+        <p class="text-slate-400 text-sm leading-relaxed mb-8">
+          Tambah produk baru beserta foto kondisi fisik, catat minus pemakaian secara jujur, dan hapus atau perbarui stok kapan saja dengan cepat.
+        </p>
+
+        <!-- Clean Metric Preview Box -->
+        <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4 backdrop-blur-sm">
+          <div class="flex items-center justify-between text-xs text-slate-400 mb-3 pb-3 border-b border-slate-700/70">
+            <span>Sistem Inventori Barang Bekas</span>
+            <span class="font-mono text-emerald-400">Ready to Use</span>
+          </div>
+          <div class="grid grid-cols-3 gap-4 text-left">
+            <div>
+              <div class="text-xs text-slate-400">Kelola Stok</div>
+              <div class="text-sm font-semibold text-white mt-0.5">Tambah & Hapus</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400">Tampilan HP</div>
+              <div class="text-sm font-semibold text-white mt-0.5">Responsif</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400">Siap Deploy</div>
+              <div class="text-sm font-semibold text-white mt-0.5">Vercel Ready</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-10 flex items-center justify-between text-xs text-slate-500">
+        <span>© 2026 Barang Bekas Indonesia</span>
+        <span>Bekasi • Jakarta • Bandung</span>
+      </div>
+    </div>
+
+    <!-- Right Column: Login Form -->
+    <div class="flex-1 flex flex-col justify-between p-5 sm:p-12 lg:p-16 bg-[#F8FAFC] dark:bg-darkbg">
+      <!-- Top bar on mobile / theme toggle -->
+      <div class="flex items-center justify-between">
+        <div class="flex lg:hidden items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-xs">BB</div>
+          <span class="font-bold text-base tracking-tight">Barang Bekas</span>
+        </div>
+        <div class="ml-auto flex items-center gap-2">
+          <button onclick="toggleTheme()" type="button" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard text-xs font-medium text-slate-700 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800/80 transition">
+            <svg id="login-theme-icon-sun" class="w-4 h-4 hidden text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+            <svg id="login-theme-icon-moon" class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <span class="theme-label-text">Mode Malam</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Form Container -->
+      <div class="w-full max-w-md mx-auto my-auto py-6">
+        <div class="bg-white dark:bg-darkcard border border-slate-200/90 dark:border-darkborder rounded-xl shadow-sm p-5 sm:p-8">
+          <div class="mb-6">
+            <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-zinc-100">Login Admin Barang Bekas</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1">
+              Masuk untuk menambah barang bekas baru, mengubah harga, atau menghapus stok.
+            </p>
+          </div>
+
+          <!-- Demo Credentials Banner -->
+          <div class="mb-6 p-3.5 rounded-lg bg-slate-50 dark:bg-zinc-900/90 border border-slate-200 dark:border-zinc-800 flex items-center justify-between gap-3">
+            <div class="text-xs min-w-0">
+              <div class="font-semibold text-slate-800 dark:text-zinc-200">Akun Admin Demo</div>
+              <div class="text-slate-500 dark:text-zinc-400 font-mono text-[11px] mt-0.5 truncate">admin@barangbekas.id / admin123</div>
+            </div>
+            <button type="button" onclick="fillDemoCredentials()" class="shrink-0 px-2.5 py-1.5 rounded-md bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-xs font-medium text-brand-600 dark:text-emerald-400 hover:bg-slate-50 dark:hover:bg-zinc-700 transition shadow-2xs">
+              Isi Otomatis
+            </button>
+          </div>
+
+          <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4" novalidate>
+            <div id="login-error" class="hidden p-3 rounded-lg bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900/60 text-xs text-red-700 dark:text-red-300 font-medium">
+              Email atau kata sandi tidak sesuai. Gunakan tombol "Isi Otomatis" untuk masuk.
+            </div>
+
+            <div>
+              <label for="login-email" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">
+                Email Admin
+              </label>
+              <input id="login-email" type="email" required value="admin@barangbekas.id" placeholder="admin@barangbekas.id"
+                class="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-600/20 focus:border-brand-600 transition" />
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label for="login-password" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300">
+                  Kata Sandi
+                </label>
+                <span class="text-[11px] text-slate-400 dark:text-zinc-500">Default: admin123</span>
+              </div>
+              <div class="relative">
+                <input id="login-password" type="password" required value="admin123" placeholder="••••••••"
+                  class="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-600/20 focus:border-brand-600 transition pr-10" />
+                <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-zinc-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input id="login-remember" type="checkbox" checked class="w-4 h-4 rounded border-slate-300 dark:border-zinc-700 text-brand-600 focus:ring-brand-600" />
+                <span class="text-xs text-slate-600 dark:text-zinc-400">Tetap masuk di perangkat ini</span>
+              </label>
+            </div>
+
+            <button type="submit" class="w-full py-2.5 px-4 rounded-lg bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white font-semibold text-sm shadow-xs transition flex items-center justify-center gap-2 cursor-pointer mt-2">
+              <span>Masuk ke Dashboard</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+            </button>
+          </form>
+        </div>
+
+        <p class="text-center text-xs text-slate-400 dark:text-zinc-500 mt-5">
+          Seluruh barang & foto yang Anda tambahkan tersimpan otomatis di perangkat Anda.
+        </p>
+      </div>
+
+      <div class="text-center lg:text-right text-xs text-slate-400 dark:text-zinc-600">
+        Siap di-deploy ke Vercel tanpa konfigurasi tambahan.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       2. MAIN APPLICATION SHELL (ADMIN + STOREFRONT)
+       ========================================== -->
+  <div id="app-shell" class="hidden min-h-screen flex flex-col pb-20 sm:pb-0">
+
+    <!-- Top Navigation Bar (Mobile-Optimized) -->
+    <header class="sticky top-0 z-30 h-14 sm:h-16 bg-white/95 dark:bg-darkcard/95 backdrop-blur-md border-b border-slate-200 dark:border-darkborder px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
+      
+      <!-- Left: Brand & Mode Switcher -->
+      <div class="flex items-center gap-3 sm:gap-6 min-w-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-xs tracking-tight shrink-0">
+            BB
+          </div>
+          <div class="truncate">
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white truncate">Barang Bekas</span>
+              <span class="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/80 text-brand-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/70 font-semibold shrink-0">Admin</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- View Mode Switcher: Admin vs Public Storefront (Desktop) -->
+        <div class="hidden md:flex items-center p-1 rounded-lg bg-slate-100 dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800">
+          <button type="button" id="tab-admin-btn" onclick="switchAppMode('admin')"
+            class="px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center gap-1.5 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-2xs">
+            <svg class="w-3.5 h-3.5 text-brand-600 dark:text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+            Dashboard Admin
+          </button>
+          <button type="button" id="tab-store-btn" onclick="switchAppMode('storefront')"
+            class="px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center gap-1.5 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Lihat Katalog Toko
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: Actions, Theme Toggle, Profile & Logout -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+        <!-- Quick Add Button in Header for Desktop -->
+        <button type="button" onclick="openProductModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold transition cursor-pointer shadow-2xs">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+          <span>Tambah Barang</span>
+        </button>
+
+        <!-- Vercel Fix & Separated Files Downloader Button -->
+        <button type="button" onclick="openVercelModal()" title="Solusi 404 & Download File Terpisah untuk Vercel" class="px-2.5 py-1.5 rounded-lg border border-emerald-300 dark:border-emerald-800 bg-emerald-50/90 dark:bg-emerald-950/60 text-xs font-semibold text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/70 transition inline-flex items-center gap-1.5 cursor-pointer shadow-2xs">
+          <svg class="w-3.5 h-3.5 text-slate-900 dark:text-white shrink-0" viewBox="0 0 76 65" fill="currentColor"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z"/></svg>
+          <span class="hidden md:inline">File Vercel (Anti 404)</span>
+          <span class="md:hidden">Vercel</span>
+        </button>
+
+        <!-- Theme Switcher (Siang / Malam) -->
+        <button type="button" onclick="toggleTheme()" title="Ganti Tema Siang / Malam"
+          class="inline-flex items-center gap-1.5 p-2 sm:px-3 sm:py-1.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-zinc-900 text-xs font-medium text-slate-700 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800 transition cursor-pointer">
+          <svg id="nav-theme-icon-sun" class="w-4 h-4 hidden text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+          <svg id="nav-theme-icon-moon" class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <span class="hidden lg:inline theme-label-text">Mode Malam</span>
+        </button>
+
+        <!-- Admin User Info (Desktop) -->
+        <div class="hidden lg:flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-zinc-800">
+          <div class="w-7 h-7 rounded-full bg-emerald-100 dark:bg-emerald-950 border border-emerald-300 dark:border-emerald-800 flex items-center justify-center text-[11px] font-bold text-emerald-800 dark:text-emerald-300">
+            AD
+          </div>
+          <div class="text-left leading-tight">
+            <div id="nav-user-name" class="text-xs font-semibold text-slate-900 dark:text-zinc-100">Admin</div>
+            <div id="nav-user-email" class="text-[10px] text-slate-500 dark:text-zinc-400">admin@barangbekas.id</div>
+          </div>
+        </div>
+
+        <!-- Logout Button -->
+        <button type="button" onclick="handleLogout()" title="Keluar / Logout"
+          class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-red-200 dark:border-red-900/60 bg-red-50/70 dark:bg-red-950/30 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-100/80 dark:hover:bg-red-950/60 transition cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+          <span class="hidden sm:inline">Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Mode Switcher Bar (Sticky under header on HP) -->
+    <div class="md:hidden bg-white dark:bg-darkcard border-b border-slate-200 dark:border-darkborder px-3 py-2 flex items-center gap-2">
+      <button type="button" id="mobile-tab-admin-btn" onclick="switchAppMode('admin')"
+        class="flex-1 py-2 rounded-lg text-xs font-semibold text-center bg-slate-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-2xs transition">
+        Kelola Stok (Admin)
+      </button>
+      <button type="button" id="mobile-tab-store-btn" onclick="switchAppMode('storefront')"
+        class="flex-1 py-2 rounded-lg text-xs font-semibold text-center text-slate-600 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-900 transition">
+        Lihat Toko Pembeli
+      </button>
+    </div>
+
+    <!-- ==========================================
+         2A. ADMIN DASHBOARD VIEW
+         ========================================== -->
+    <main id="admin-view" class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-4 sm:space-y-6">
+      
+      <!-- Page Header & Primary CTA -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white dark:bg-darkcard sm:bg-transparent sm:dark:bg-transparent p-4 sm:p-0 rounded-xl border border-slate-200/90 dark:border-darkborder sm:border-0">
+        <div>
+          <h1 class="text-lg sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Daftar Stok Barang Bekas</h1>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-0.5">
+            Barang yang dihapus tidak akan muncul lagi saat di-refresh, dan barang baru tersimpan permanen.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 pt-1 sm:pt-0">
+          <button type="button" onclick="openProductModal()"
+            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white text-xs sm:text-sm font-semibold shadow-xs transition cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+            <span>+ Tambah Barang Bekas</span>
+          </button>
+
+          <!-- Settings Dropdown for Data Management (Prevent accidental reset) -->
+          <div class="relative">
+            <button type="button" onclick="toggleDataMenu()" title="Pengaturan Data"
+              class="px-3 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard text-xs font-medium text-slate-600 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-800 transition cursor-pointer inline-flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              <span class="hidden sm:inline">Opsi Data</span>
+            </button>
+            <div id="data-settings-menu" class="hidden absolute right-0 mt-2 w-56 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 shadow-lg py-1.5 z-40">
+              <div class="px-3 py-1.5 text-[10px] font-mono uppercase text-slate-400 border-b border-slate-100 dark:border-zinc-800">
+                Manajemen Penyimpanan
+              </div>
+              <button type="button" onclick="clearAllProducts()" class="w-full text-left px-3.5 py-2 text-xs text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 font-medium flex items-center gap-2">
+                <span>Kosongkan Semua Barang</span>
+              </button>
+              <button type="button" onclick="resetDemoData()" class="w-full text-left px-3.5 py-2 text-xs text-slate-700 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800 flex items-center gap-2">
+                <span>Muat Ulang 6 Barang Contoh</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards (2x2 on HP, 4 Columns on Desktop) -->
+      <section class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+        <!-- Card 1: Total Nilai Inventori Aktif -->
+        <div class="bg-white dark:bg-darkcard border border-slate-200/90 dark:border-darkborder rounded-xl p-3.5 sm:p-5 shadow-2xs">
+          <div class="flex items-center justify-between text-[11px] sm:text-xs font-medium text-slate-500 dark:text-zinc-400">
+            <span class="truncate">Nilai Stok Aktif</span>
+            <span class="p-1 sm:p-1.5 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-brand-600 dark:text-emerald-400 shrink-0">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </span>
+          </div>
+          <div id="kpi-inventory-value" class="text-base sm:text-2xl font-bold text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums tracking-tight truncate">
+            Rp 0
+          </div>
+          <div class="mt-1.5 flex items-center justify-between text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400">
+            <span class="hidden sm:inline">Siap dijual</span>
+            <span id="kpi-Active-count-sub" class="font-mono text-emerald-600 dark:text-emerald-400 font-medium">0 unit</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Barang Siap Jual -->
+        <div class="bg-white dark:bg-darkcard border border-slate-200/90 dark:border-darkborder rounded-xl p-3.5 sm:p-5 shadow-2xs">
+          <div class="flex items-center justify-between text-[11px] sm:text-xs font-medium text-slate-500 dark:text-zinc-400">
+            <span class="truncate">Jumlah Barang</span>
+            <span class="p-1 sm:p-1.5 rounded-md bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 shrink-0">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            </span>
+          </div>
+          <div id="kpi-active-items" class="text-base sm:text-2xl font-bold text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums tracking-tight">
+            0 Barang
+          </div>
+          <div class="mt-1.5 flex items-center justify-between text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400">
+            <span class="hidden sm:inline">Status dipesan:</span>
+            <span id="kpi-reserved-sub" class="font-mono">0 dipesan</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Barang Terjual -->
+        <div class="bg-white dark:bg-darkcard border border-slate-200/90 dark:border-darkborder rounded-xl p-3.5 sm:p-5 shadow-2xs">
+          <div class="flex items-center justify-between text-[11px] sm:text-xs font-medium text-slate-500 dark:text-zinc-400">
+            <span class="truncate">Sudah Terjual</span>
+            <span class="p-1 sm:p-1.5 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 shrink-0">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+          </div>
+          <div id="kpi-sold-value" class="text-base sm:text-2xl font-bold text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums tracking-tight truncate">
+            Rp 0
+          </div>
+          <div class="mt-1.5 flex items-center justify-between text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400">
+            <span class="hidden sm:inline">Total laku</span>
+            <span id="kpi-sold-count" class="font-mono text-blue-600 dark:text-blue-400 font-medium">0 laku</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Rata-rata Skor Kondisi -->
+        <div class="bg-white dark:bg-darkcard border border-slate-200/90 dark:border-darkborder rounded-xl p-3.5 sm:p-5 shadow-2xs">
+          <div class="flex items-center justify-between text-[11px] sm:text-xs font-medium text-slate-500 dark:text-zinc-400">
+            <span class="truncate">Kondisi Fisik</span>
+            <span class="p-1 sm:p-1.5 rounded-md bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 shrink-0">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            </span>
+          </div>
+          <div id="kpi-avg-condition" class="text-base sm:text-2xl font-bold text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums tracking-tight">
+            92%
+          </div>
+          <div class="mt-1.5 flex items-center justify-between text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400">
+            <span class="hidden sm:inline">Rata-rata kelayakan</span>
+            <span class="font-mono text-emerald-600 dark:text-emerald-400">Layak Pakai</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter, Search & View Toggle Toolbar -->
+      <section class="bg-white dark:bg-darkcard border border-slate-200/90 dark:border-darkborder rounded-xl p-3 sm:p-4 shadow-2xs space-y-3">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-2.5 sm:gap-3">
+          
+          <!-- Search Input -->
+          <div class="relative flex-1">
+            <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input id="filter-search" type="text" oninput="renderAdminInventory()" placeholder="Cari nama barang bekas, kode SKU, atau lokasi..."
+              class="w-full pl-9 pr-4 py-2 text-xs sm:text-sm rounded-lg border border-slate-200 dark:border-zinc-700 bg-slate-50/70 dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 placeholder-slate-400 focus:outline-none focus:bg-white dark:focus:bg-zinc-900 focus:border-brand-600 transition" />
+          </div>
+
+          <!-- Dropdown Filters (Grid on Mobile so it doesn't overflow) -->
+          <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2">
+            <select id="filter-category" onchange="renderAdminInventory()"
+              class="px-2.5 py-2 text-xs font-medium rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-700 dark:text-zinc-200 focus:outline-none focus:border-brand-600">
+              <option value="ALL">Semua Kategori</option>
+              <option value="Elektronik & Gadget">Elektronik & Gadget</option>
+              <option value="Kamera & Audio">Kamera & Audio</option>
+              <option value="Fashion & Sepatu">Fashion & Sepatu</option>
+              <option value="Jam & Aksesoris">Jam & Aksesoris</option>
+              <option value="Furnitur & Rumah">Furnitur & Rumah</option>
+              <option value="Hobi & Koleksi">Hobi & Koleksi</option>
+            </select>
+
+            <select id="filter-condition" onchange="renderAdminInventory()"
+              class="px-2.5 py-2 text-xs font-medium rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-700 dark:text-zinc-200 focus:outline-none focus:border-brand-600">
+              <option value="ALL">Semua Kondisi</option>
+              <option value="Bekas - Seperti Baru">Bekas - Seperti Baru</option>
+              <option value="Bekas - Sangat Baik">Bekas - Sangat Baik</option>
+              <option value="Bekas - Layak Pakai">Bekas - Layak Pakai</option>
+              <option value="Bekas - Ada Minus">Bekas - Ada Minus</option>
+            </select>
+
+            <select id="filter-status" onchange="renderAdminInventory()"
+              class="col-span-2 sm:col-span-1 px-2.5 py-2 text-xs font-medium rounded-lg border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-700 dark:text-zinc-200 focus:outline-none focus:border-brand-600">
+              <option value="ALL">Semua Status</option>
+              <option value="Tersedia">Tersedia</option>
+              <option value="Dipesan">Dipesan (Booked)</option>
+              <option value="Terjual">Terjual</option>
+            </select>
+
+            <!-- Layout Switcher: Table vs Grid (Desktop only; Mobile automatically uses responsive cards) -->
+            <div class="hidden md:inline-flex rounded-lg border border-slate-200 dark:border-zinc-700 p-0.5 bg-slate-100 dark:bg-zinc-900">
+              <button type="button" id="view-btn-table" onclick="setInventoryLayout('table')" title="Tampilan Tabel"
+                class="p-1.5 rounded-md bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-2xs transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              </button>
+              <button type="button" id="view-btn-grid" onclick="setInventoryLayout('grid')" title="Tampilan Kartu"
+                class="p-1.5 rounded-md text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MOBILE CARD LIST (Automatically shown on HP screens < 768px for easy reading, editing & deleting) -->
+      <section id="admin-mobile-list" class="md:hidden space-y-3">
+        <!-- Populated by JS -->
+      </section>
+
+      <!-- DESKTOP Inventory Container: Table View -->
+      <section id="admin-table-container" class="hidden md:block bg-white dark:bg-darkcard border border-slate-200/90 dark:border-darkborder rounded-xl shadow-2xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 dark:border-darkborder bg-slate-50/70 dark:bg-zinc-900/60 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-zinc-400">
+                <th class="py-3.5 px-4">Barang Bekas & SKU</th>
+                <th class="py-3.5 px-4">Kategori & Lokasi</th>
+                <th class="py-3.5 px-4">Kondisi Fisik</th>
+                <th class="py-3.5 px-4">Harga Jual</th>
+                <th class="py-3.5 px-4">Status</th>
+                <th class="py-3.5 px-4 text-right">Aksi (Edit / Hapus)</th>
+              </tr>
+            </thead>
+            <tbody id="admin-table-body" class="divide-y divide-slate-200/80 dark:divide-darkborder text-sm">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- DESKTOP Inventory Container: Card Grid View -->
+      <section id="admin-grid-container" class="hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Populated by JS -->
+      </section>
+
+      <!-- Empty State -->
+      <div id="admin-empty-state" class="hidden bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-xl p-10 text-center">
+        <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-zinc-800 mx-auto flex items-center justify-center text-slate-400 mb-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+        </div>
+        <h3 id="empty-state-title" class="text-sm font-bold text-slate-900 dark:text-white">Stok Barang Bekas Masih Kosong</h3>
+        <p id="empty-state-desc" class="text-xs text-slate-500 dark:text-zinc-400 mt-1 max-w-sm mx-auto">
+          Silakan klik tombol "+ Tambah Barang" untuk mengunggah produk barang bekas pertama Anda.
+        </p>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
+          <button type="button" onclick="resetFilters()" class="px-3.5 py-2 rounded-lg border border-slate-200 dark:border-zinc-700 text-xs font-semibold text-slate-700 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800 transition">
+            Reset Filter Pencarian
+          </button>
+          <button type="button" onclick="openProductModal()" class="px-4 py-2 rounded-lg bg-brand-600 text-white text-xs font-semibold hover:bg-brand-700 transition cursor-pointer">
+            + Tambah Barang Baru
+          </button>
+        </div>
+      </div>
+
+    </main>
+
+
+    <!-- ==========================================
+       5. VERCEL DEPLOYMENT & SEPARATED FILES DOWNLOADER MODAL
+       ========================================== -->
+  <div id="vercel-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
+    <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-xl shadow-xl w-full max-w-2xl overflow-hidden my-auto">
+      <div class="px-5 py-4 border-b border-slate-200 dark:border-darkborder flex items-center justify-between bg-slate-50/60 dark:bg-zinc-900/60">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 76 65" fill="currentColor"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z"/></svg>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Solusi Error 404 Vercel & Download File Terpisah</h3>
+            <p class="text-[11px] text-slate-500 dark:text-zinc-400">Unduh paket file HTML, CSS, JS, dan vercel.json siap upload</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeVercelModal()" class="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="p-5 sm:p-6 space-y-5 max-h-[80vh] overflow-y-auto text-xs sm:text-sm text-slate-600 dark:text-zinc-300 leading-relaxed">
+        
+        <!-- Why 404 Happened Explanation -->
+        <div class="p-3.5 rounded-xl bg-amber-50/90 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/70 text-amber-900 dark:text-amber-200 text-xs space-y-1.5">
+          <div class="font-bold flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span>Kenapa muncul "404: NOT_FOUND (sin1::...)" di Vercel?</span>
+          </div>
+          <p class="text-amber-800 dark:text-amber-300/90">
+            Error <strong>404 NOT_FOUND</strong> di Vercel terjadi jika: (1) Nama file utama bukan <code class="font-mono font-bold underline">index.html</code> (huruf kecil semua), atau (2) File berada di dalam sub-folder lagi, atau (3) Tidak ada file konfigurasi <code class="font-mono font-bold">vercel.json</code>.
+          </p>
+        </div>
+
+        <!-- Option 1: Download Separated Files (HTML + CSS + JS + vercel.json) -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+              Unduh 4 File Terpisah (HTML, CSS, JS, & vercel.json)
+            </h4>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-semibold">Rekomendasi</span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-zinc-400">
+            Klik tombol di bawah ini untuk mengunduh file yang sudah dipisah secara otomatis. Masukkan keempat file ini ke dalam <strong>1 folder utama (root)</strong> lalu upload ke GitHub / Vercel:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+            <button type="button" onclick="downloadSeparatedFile('index.html')"
+              class="flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50/70 dark:bg-zinc-900 hover:border-brand-600 dark:hover:border-emerald-500 transition text-left cursor-pointer group">
+              <div>
+                <div class="font-mono text-xs font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-emerald-400">1. index.html</div>
+                <div class="text-[11px] text-slate-500 dark:text-zinc-400">Struktur Halaman Utama</div>
+              </div>
+              <span class="px-2.5 py-1 rounded-md bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-[11px] font-semibold text-brand-600 dark:text-emerald-400">Download</span>
+            </button>
+
+            <button type="button" onclick="downloadSeparatedFile('style.css')"
+              class="flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50/70 dark:bg-zinc-900 hover:border-brand-600 dark:hover:border-emerald-500 transition text-left cursor-pointer group">
+              <div>
+                <div class="font-mono text-xs font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-emerald-400">2. style.css</div>
+                <div class="text-[11px] text-slate-500 dark:text-zinc-400">Styling & Tema Siang/Malam</div>
+              </div>
+              <span class="px-2.5 py-1 rounded-md bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-[11px] font-semibold text-brand-600 dark:text-emerald-400">Download</span>
+            </button>
+
+            <button type="button" onclick="downloadSeparatedFile('app.js')"
+              class="flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50/70 dark:bg-zinc-900 hover:border-brand-600 dark:hover:border-emerald-500 transition text-left cursor-pointer group">
+              <div>
+                <div class="font-mono text-xs font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-emerald-400">3. app.js</div>
+                <div class="text-[11px] text-slate-500 dark:text-zinc-400">Full Logic JS + Simpan Permanen</div>
+              </div>
+              <span class="px-2.5 py-1 rounded-md bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-[11px] font-semibold text-brand-600 dark:text-emerald-400">Download</span>
+            </button>
+
+            <button type="button" onclick="downloadSeparatedFile('vercel.json')"
+              class="flex items-center justify-between p-3 rounded-xl border border-emerald-200 dark:border-emerald-900/70 bg-emerald-50/50 dark:bg-emerald-950/30 hover:border-brand-600 transition text-left cursor-pointer group">
+              <div>
+                <div class="font-mono text-xs font-bold text-emerald-900 dark:text-emerald-300">4. vercel.json</div>
+                <div class="text-[11px] text-emerald-700 dark:text-emerald-400">Penangkal Error 404 Vercel</div>
+              </div>
+              <span class="px-2.5 py-1 rounded-md bg-brand-600 text-white text-[11px] font-semibold">Download</span>
+            </button>
+          </div>
+
+          <button type="button" onclick="downloadAllSeparatedFiles()"
+            class="w-full py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs shadow-xs transition flex items-center justify-center gap-2 cursor-pointer mt-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            <span>Download Semua 4 File Sekaligus (HTML + CSS + JS + vercel.json)</span>
+          </button>
+        </div>
+
+        <!-- Folder Structure Preview -->
+        <div class="p-3.5 rounded-xl bg-slate-900 text-slate-200 font-mono text-xs space-y-1">
+          <div class="text-slate-400 text-[11px] mb-1">Pastikan susunan file di GitHub / Folder Anda persis seperti ini (jangan di dalam sub-folder):</div>
+          <div>📁 project-barang-bekas/</div>
+          <div class="pl-4 text-emerald-400">├── index.html</div>
+          <div class="pl-4 text-sky-400">├── style.css</div>
+          <div class="pl-4 text-amber-300">├── app.js</div>
+          <div class="pl-4 text-purple-300">└── vercel.json</div>
+        </div>
+      </div>
+
+      <div class="px-5 py-3.5 bg-slate-50 dark:bg-zinc-900/60 border-t border-slate-200 dark:border-darkborder flex justify-end">
+        <button type="button" onclick="closeVercelModal()" class="px-4 py-2 rounded-lg bg-slate-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-semibold cursor-pointer">
+          Tutup Panduan
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       6. TOAST NOTIFICATION CONTAINER
+       ========================================== -->
+  <div id="toast-container" class="fixed bottom-16 sm:bottom-5 right-4 sm:right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+
+  <!-- ==========================================
+       7. APPLICATION JAVASCRIPT LOGIC
+       ========================================== -->
+  <script id="main-app-script">
+    // --- STORAGE KEYS (DENGAN FLAG INITIALIZED AGAR BARANG YANG DIHAPUS TIDAK MUNCUL LAGI) ---
+    const STORAGE_KEYS = {
+      ITEMS: 'barang_bekas_items_v4',
+      INITIALIZED: 'barang_bekas_initialized_v4',
+      SESSION: 'barang_bekas_session_v4',
+      THEME: 'barang_bekas_theme_v4',
+      LAYOUT: 'barang_bekas_layout_v4'
+    };
+
+    // --- INITIAL REALISTIC INDONESIAN SECOND-HAND INVENTORY ---
+    const INITIAL_ITEMS = [
+      {
+        id: 'PRD-801',
+        sku: 'BB-ELK-01',
+        title: 'MacBook Air M1 2020 RAM 8GB / SSD 256GB Space Grey Bekas',
+        category: 'Elektronik & Gadget',
+        price: 8450000,
+        originalPrice: 13999000,
+        condition: 'Bekas - Sangat Baik',
+        conditionScore: 94,
+        location: 'Bekasi Selatan',
+        status: 'Tersedia',
+        image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
+        notes: 'Fullset box dan charger original 30W. Battery Health 91%. Layar bersih tanpa dead pixel, bodi mulus pemakaian pribadi di meja kerja.',
+        createdAt: '2026-10-25'
+      },
+      {
+        id: 'PRD-802',
+        sku: 'BB-KAM-02',
+        title: 'Kamera Bekas Mirrorless Fujifilm X-T30 + Lensa XC 15-45mm',
+        category: 'Kamera & Audio',
+        price: 9200000,
+        originalPrice: 14500000,
+        condition: 'Bekas - Seperti Baru',
+        conditionScore: 97,
+        location: 'Jakarta Selatan',
+        status: 'Tersedia',
+        image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80',
+        notes: 'Shutter count rendah (4.100 jepretan). Sensor bersih bebas jamur, selalu disimpan di dry box. Lengkap baterai ori, strap, dan dus.',
+        createdAt: '2026-10-26'
+      },
+      {
+        id: 'PRD-803',
+        sku: 'BB-FSH-03',
+        title: 'Sepatu Second New Balance 550 White Green Original (Size 42)',
+        category: 'Fashion & Sepatu',
+        price: 1150000,
+        originalPrice: 2099000,
+        condition: 'Bekas - Sangat Baik',
+        conditionScore: 92,
+        location: 'Bandung Kota',
+        status: 'Tersedia',
+        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+        notes: 'Pembelian resmi Foot Locker. Baru dipakai 4 kali jalan indoor. Tapak bawah masih sangat tebal, sudah dicuci bersih siap pakai.',
+        createdAt: '2026-10-27'
+      },
+      {
+        id: 'PRD-804',
+        sku: 'BB-JAM-04',
+        title: 'Jam Tangan Bekas Seiko 5 Sports Automatic SRPD51K1 Blue Dial',
+        category: 'Jam & Aksesoris',
+        price: 2350000,
+        originalPrice: 3850000,
+        condition: 'Bekas - Seperti Baru',
+        conditionScore: 96,
+        location: 'Bekasi Barat',
+        status: 'Dipesan',
+        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
+        notes: 'Mesin automatic normal dan akurat. Kaca bebas baret. Rantai stainless lengkap dengan potongan rantai cadangan dan kotak.',
+        createdAt: '2026-10-28'
+      },
+      {
+        id: 'PRD-805',
+        sku: 'BB-FRN-05',
+        title: 'Kursi Kerja Kantor Bekas Ergonomis Jaring Mesh Hidrolik Normal',
+        category: 'Furnitur & Rumah',
+        price: 1350000,
+        originalPrice: 2650000,
+        condition: 'Bekas - Layak Pakai',
+        conditionScore: 88,
+        location: 'Bekasi Timur',
+        status: 'Tersedia',
+        image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&w=800&q=80',
+        notes: 'Hidrolik naik-turun lancar, sandaran jaring masih kencang. Minus pemakaian baret halus di kaki roda bawah.',
+        createdAt: '2026-10-29'
+      },
+      {
+        id: 'PRD-806',
+        sku: 'BB-KAM-06',
+        title: 'Headphone Bekas Sony WH-1000XM4 Wireless Noise Cancelling',
+        category: 'Kamera & Audio',
+        price: 2650000,
+        originalPrice: 4999000,
+        condition: 'Bekas - Sangat Baik',
+        conditionScore: 93,
+        location: 'Jakarta Pusat',
+        status: 'Terjual',
+        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
+        notes: 'Busa earpad masih empuk. Baterai awet hingga 28 jam. Lengkap dengan tas hardcase original dan kabel.',
+        createdAt: '2026-10-20'
+      }
+    ];
+
+    // --- STATE VARIABLES ---
+    let inventoryItems = [];
+    let currentAppMode = 'admin'; // 'admin' | 'storefront'
+    let currentInventoryLayout = 'table'; // 'table' | 'grid'
+    let currentStoreCategory = 'ALL';
+    let pendingDeleteId = null;
+
+    // --- INITIALIZATION ---
+    window.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      loadInventoryData();
+      checkAuthSession();
+
+      // Close data menu when clicking outside
+      document.addEventListener('click', (e) => {
+        const menu = document.getElementById('data-settings-menu');
+        if (menu && !menu.classList.contains('hidden')) {
+          if (!e.target.closest('#data-settings-menu') && !e.target.closest('[onclick="toggleDataMenu()"]')) {
+            menu.classList.add('hidden');
+          }
+        }
+      });
+    });
+
+    function toggleDataMenu() {
+      const menu = document.getElementById('data-settings-menu');
+      if (menu) menu.classList.toggle('hidden');
+    }
+
+    // --- THEME MANAGEMENT (SIANG / MALAM) ---
+    function initTheme() {
+      const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME) || 'light';
+      applyTheme(savedTheme);
+    }
+
+    function toggleTheme() {
+      const htmlEl = document.documentElement;
+      const isDark = htmlEl.classList.contains('dark');
+      const nextTheme = isDark ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      localStorage.setItem(STORAGE_KEYS.THEME, nextTheme);
+      showToast(nextTheme === 'dark' ? 'Tema Malam diaktifkan' : 'Tema Siang diaktifkan', 'info');
+    }
+
+    function applyTheme(theme) {
+      const htmlEl = document.documentElement;
+      const sunIcons = [
+        document.getElementById('login-theme-icon-sun'),
+        document.getElementById('nav-theme-icon-sun')
+      ];
+      const moonIcons = [
+        document.getElementById('login-theme-icon-moon'),
+        document.getElementById('nav-theme-icon-moon')
+      ];
+      const labels = document.querySelectorAll('.theme-label-text');
+
+      if (theme === 'dark') {
+        htmlEl.classList.add('dark');
+        htmlEl.classList.remove('light');
+        sunIcons.forEach(el => el && el.classList.remove('hidden'));
+        moonIcons.forEach(el => el && el.classList.add('hidden'));
+        labels.forEach(el => el.textContent = 'Mode Siang');
+      } else {
+        htmlEl.classList.remove('dark');
+        htmlEl.classList.add('light');
+        sunIcons.forEach(el => el && el.classList.add('hidden'));
+        moonIcons.forEach(el => el && el.classList.remove('hidden'));
+        labels.forEach(el => el.textContent = 'Mode Malam');
+      }
+    }
+
+    // --- AUTHENTICATION (LOGIN & LOGOUT) ---
+    function checkAuthSession() {
+      const savedSession = localStorage.getItem(STORAGE_KEYS.SESSION);
+      if (savedSession) {
+        try {
+          const user = JSON.parse(savedSession);
+          showAuthenticatedApp(user);
+          return;
+        } catch (e) {
+          localStorage.removeItem(STORAGE_KEYS.SESSION);
+        }
+      }
+      showLoginScreen();
+    }
+
+    function fillDemoCredentials() {
+      document.getElementById('login-email').value = 'admin@barangbekas.id';
+      document.getElementById('login-password').value = 'admin123';
+      document.getElementById('login-error').classList.add('hidden');
+      showToast('Akun admin demo berhasil diisi', 'info');
+    }
+
+    function togglePasswordVisibility() {
+      const input = document.getElementById('login-password');
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+      const errorBox = document.getElementById('login-error');
+
+      if (!email || password.length < 4) {
+        errorBox.textContent = 'Mohon masukkan email yang valid dan kata sandi minimal 4 karakter.';
+        errorBox.classList.remove('hidden');
+        return;
+      }
+
+      errorBox.classList.add('hidden');
+      const userSession = {
+        email: email,
+        name: email.split('@')[0].replace('.', ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        loginAt: new Date().toISOString()
+      };
+
+      localStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(userSession));
+      showAuthenticatedApp(userSession);
+      showToast(`Selamat datang kembali, ${userSession.name}`, 'success');
+    }
+
+    function handleLogout() {
+      localStorage.removeItem(STORAGE_KEYS.SESSION);
+      showLoginScreen();
+      showToast('Anda telah keluar dari sesi Admin', 'info');
+    }
+
+    function showLoginScreen() {
+      document.getElementById('login-view').classList.remove('hidden');
+      document.getElementById('app-shell').classList.add('hidden');
+    }
+
+    function showAuthenticatedApp(user) {
+      document.getElementById('login-view').classList.add('hidden');
+      document.getElementById('app-shell').classList.remove('hidden');
+      document.getElementById('nav-user-name').textContent = user.name || 'Admin';
+      document.getElementById('nav-user-email').textContent = user.email || 'admin@barangbekas.id';
+      
+      const savedLayout = localStorage.getItem(STORAGE_KEYS.LAYOUT) || 'table';
+      setInventoryLayout(savedLayout, false);
+      renderAll();
+    }
+
+    // --- DATA PERSISTENCE (FIXED: MENGHORMATI HAPUS SEMUA & SIMPAN BARANG BARU PERMANEN) ---
+    function loadInventoryData() {
+      const isInitialized = localStorage.getItem(STORAGE_KEYS.INITIALIZED);
+      const raw = localStorage.getItem(STORAGE_KEYS.ITEMS);
+
+      if (isInitialized === 'true' && raw !== null) {
+        try {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            inventoryItems = parsed; // Bisa berupa array kosong [] jika user sudah menghapus semua barang!
+            return;
+          }
+        } catch (e) {
+          console.error('Failed parsing inventory:', e);
+        }
+      }
+
+      // Hanya dijalankan 1 kali saat pertama kali aplikasi dibuka di perangkat ini
+      inventoryItems = JSON.parse(JSON.stringify(INITIAL_ITEMS));
+      localStorage.setItem(STORAGE_KEYS.INITIALIZED, 'true');
+      saveInventoryData();
+    }
+
+    function saveInventoryData() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.INITIALIZED, 'true');
+        localStorage.setItem(STORAGE_KEYS.ITEMS, JSON.stringify(inventoryItems));
+        return true;
+      } catch (e) {
+        showToast('Penyimpanan browser penuh! Gunakan foto ukuran lebih kecil.', 'error');
+        return false;
+      }
+    }
+
+    function clearAllProducts() {
+      inventoryItems = [];
+      saveInventoryData();
+      const menu = document.getElementById('data-settings-menu');
+      if (menu) menu.classList.add('hidden');
+      renderAll();
+      showToast('Semua produk dihapus permanen dan tidak akan kembali saat di-refresh', 'info');
+    }
+
+    function resetDemoData() {
+      inventoryItems = JSON.parse(JSON.stringify(INITIAL_ITEMS));
+      saveInventoryData();
+      const menu = document.getElementById('data-settings-menu');
+      if (menu) menu.classList.add('hidden');
+      resetFilters();
+      renderAll();
+      showToast('6 barang contoh berhasil dimuat ulang', 'info');
+    }
+
+    // --- FORMATTERS ---
+    function formatRupiah(number) {
+      const val = Number(number) || 0;
+      return 'Rp ' + val.toLocaleString('id-ID');
+    }
+
+    function getStatusBadgeHTML(status) {
+      if (status === 'Tersedia') {
+        return `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/70">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Tersedia
+        </span>`;
+      }
+      if (status === 'Dipesan') {
+        return `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/70 text-amber-700 dark:text-amber-300 border border-amber-200/80 dark:border-amber-800/70">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>Dipesan
+        </span>`;
+      }
+      return `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400 border border-slate-200 dark:border-zinc-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>Terjual
+      </span>`;
+    }
+
+    // --- APP MODE SWITCHER (ADMIN VS STOREFRONT) ---
+    function switchAppMode(mode) {
+      currentAppMode = mode;
+      const adminView = document.getElementById('admin-view');
+      const storeView = document.getElementById('storefront-view');
+      
+      const tabAdminBtn = document.getElementById('tab-admin-btn');
+      const tabStoreBtn = document.getElementById('tab-store-btn');
+      const mobAdminBtn = document.getElementById('mobile-tab-admin-btn');
+      const mobStoreBtn = document.getElementById('mobile-tab-store-btn');
+
+      if (mode === 'admin') {
+        adminView.classList.remove('hidden');
+        storeView.classList.add('hidden');
+        
+        tabAdminBtn.className = 'px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center gap-1.5 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-2xs';
+        tabStoreBtn.className = 'px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center gap-1.5 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white';
+        
+        mobAdminBtn.className = 'flex-1 py-2 rounded-lg text-xs font-semibold text-center bg-slate-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-2xs transition';
+        mobStoreBtn.className = 'flex-1 py-2 rounded-lg text-xs font-semibold text-center text-slate-600 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-900 transition';
+      } else {
+        adminView.classList.add('hidden');
+        storeView.classList.remove('hidden');
+
+        tabStoreBtn.className = 'px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center gap-1.5 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-2xs';
+        tabAdminBtn.className = 'px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center gap-1.5 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white';
+
+        mobStoreBtn.className = 'flex-1 py-2 rounded-lg text-xs font-semibold text-center bg-slate-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-2xs transition';
+        mobAdminBtn.className = 'flex-1 py-2 rounded-lg text-xs font-semibold text-center text-slate-600 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-900 transition';
+      }
+
+      renderAll();
+    }
+
+    function setInventoryLayout(layout, save = true) {
+      currentInventoryLayout = layout;
+      if (save) localStorage.setItem(STORAGE_KEYS.LAYOUT, layout);
+
+      const btnTable = document.getElementById('view-btn-table');
+      const btnGrid = document.getElementById('view-btn-grid');
+
+      if (layout === 'table') {
+        btnTable.className = 'p-1.5 rounded-md bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-2xs transition';
+        btnGrid.className = 'p-1.5 rounded-md text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition';
+      } else {
+        btnGrid.className = 'p-1.5 rounded-md bg-white dark:bg-zinc-800 text-slate-900 dark:text-white shadow-2xs transition';
+        btnTable.className = 'p-1.5 rounded-md text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition';
+      }
+      renderAdminInventory();
+    }
+
+    // --- RENDER ORCHESTRATION ---
+    function renderAll() {
+      renderKPISummary();
+      renderAdminInventory();
+      renderStorefront();
+    }
+
+    // --- KPI SUMMARY CALCULATION ---
+    function renderKPISummary() {
+      const availableItems = inventoryItems.filter(i => i.status === 'Tersedia');
+      const reservedItems = inventoryItems.filter(i => i.status === 'Dipesan');
+      const soldItems = inventoryItems.filter(i => i.status === 'Terjual');
+
+      const activeInventoryValue = [...availableItems, ...reservedItems].reduce((acc, item) => acc + Number(item.price || 0), 0);
+      const soldValue = soldItems.reduce((acc, item) => acc + Number(item.price || 0), 0);
+      
+      const avgScore = inventoryItems.length > 0
+        ? Math.round(inventoryItems.reduce((acc, item) => acc + Number(item.conditionScore || 90), 0) / inventoryItems.length)
+        : 0;
+
+      document.getElementById('kpi-inventory-value').textContent = formatRupiah(activeInventoryValue);
+      document.getElementById('kpi-Active-count-sub').textContent = `${availableItems.length} siap jual`;
+      document.getElementById('kpi-active-items').textContent = `${ inventoryItems.length } Barang`;
+      document.getElementById('kpi-reserved-sub').textContent = `${reservedItems.length} dipesan`;
+      document.getElementById('kpi-sold-value').textContent = formatRupiah(soldValue);
+      document.getElementById('kpi-sold-count').textContent = `${soldItems.length} laku`;
+      document.getElementById('kpi-avg-condition').textContent = `${avgScore}%`;
+
+      const mobCount = document.getElementById('mobile-bottom-count');
+      if (mobCount) mobCount.textContent = `${inventoryItems.length} Produk Barang Bekas`;
+    }
+
+    // --- RENDER ADMIN INVENTORY (MOBILE LIST, DESKTOP TABLE & GRID) ---
+    function getFilteredAdminItems() {
+      const q = (document.getElementById('filter-search')?.value || '').toLowerCase().trim();
+      const cat = document.getElementById('filter-category')?.value || 'ALL';
+      const cond = document.getElementById('filter-condition')?.value || 'ALL';
+      const status = document.getElementById('filter-status')?.value || 'ALL';
+
+      return inventoryItems.filter(item => {
+        const matchQuery = !q ||
+          item.title.toLowerCase().includes(q) ||
+          (item.sku && item.sku.toLowerCase().includes(q)) ||
+          item.location.toLowerCase().includes(q) ||
+          item.notes.toLowerCase().includes(q);
+        const matchCat = cat === 'ALL' || item.category === cat;
+        const matchCond = cond === 'ALL' || item.condition === cond;
+        const matchStatus = status === 'ALL' || item.status === status;
+        return matchQuery && matchCat && matchCond && matchStatus;
+      });
+    }
+
+    function resetFilters() {
+      document.getElementById('filter-search').value = '';
+      document.getElementById('filter-category').value = 'ALL';
+      document.getElementById('filter-condition').value = 'ALL';
+      document.getElementById('filter-status').value = 'ALL';
+      renderAdminInventory();
+    }
+
+    function renderAdminInventory() {
+      const filtered = getFilteredAdminItems();
+      const mobileList = document.getElementById('admin-mobile-list');
+      const tableContainer = document.getElementById('admin-table-container');
+      const gridContainer = document.getElementById('admin-grid-container');
+      const emptyState = document.getElementById('admin-empty-state');
+      const emptyTitle = document.getElementById('empty-state-title');
+      const emptyDesc = document.getElementById('empty-state-desc');
+
+      if (filtered.length === 0) {
+        if (mobileList) mobileList.classList.add('hidden');
+        tableContainer.classList.add('hidden');
+        tableContainer.classList.remove('md:block');
+        gridContainer.classList.add('hidden');
+        gridContainer.classList.remove('md:grid');
+        emptyState.classList.remove('hidden');
+
+        if (inventoryItems.length === 0) {
+          if (emptyTitle) emptyTitle.textContent = 'Daftar Stok Barang Bekas Kosong';
+          if (emptyDesc) emptyDesc.textContent = 'Semua barang sebelumnya telah dihapus. Klik "+ Tambah Barang Baru" untuk mengunggah barang jualan Anda.';
+        } else {
+          if (emptyTitle) emptyTitle.textContent = 'Tidak Ada Barang yang Cocok dengan Filter';
+          if (emptyDesc) emptyDesc.textContent = 'Coba ubah kata kunci pencarian atau tekan tombol Reset Filter Pencarian.';
+        }
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      if (mobileList) {
+        mobileList.classList.remove('hidden');
+        renderAdminMobileCards(filtered);
+      }
+
+      if (currentInventoryLayout === 'table') {
+        tableContainer.classList.remove('hidden');
+        tableContainer.classList.add('md:block');
+        gridContainer.classList.add('hidden');
+        gridContainer.classList.remove('md:grid');
+        renderAdminTableRows(filtered);
+      } else {
+        tableContainer.classList.add('hidden');
+        tableContainer.classList.remove('md:block');
+        gridContainer.classList.remove('hidden');
+        gridContainer.classList.add('md:grid');
+        renderAdminGridCards(filtered);
+      }
+    }
+
+    // Dedicated responsive card list for HP screens (< 768px)
+    function renderAdminMobileCards(items) {
+      const container = document.getElementById('admin-mobile-list');
+      if (!container) return;
+
+      container.innerHTML = items.map(item => `
+        <div class="bg-white dark:bg-darkcard border border-slate-200/90 dark:border-darkborder rounded-xl p-3.5 shadow-2xs space-y-3">
+          <div class="flex gap-3">
+            <img src="${item.image}" alt="${escapeHtml(item.title)}"
+              onerror="this.src='https://placehold.co/160x160/e2e8f0/475569?text=Foto'"
+              class="w-20 h-20 rounded-lg object-cover border border-slate-200 dark:border-zinc-700 shrink-0 bg-slate-100 dark:bg-zinc-800" />
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[10px] font-mono text-slate-400 dark:text-zinc-500">${escapeHtml(item.sku || item.id)}</span>
+                ${getStatusBadgeHTML(item.status)}
+              </div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm line-clamp-2 mt-1 leading-snug">
+                ${escapeHtml(item.title)}
+              </h3>
+              <div class="text-sm font-bold text-brand-600 dark:text-emerald-400 font-mono tabular-nums mt-1">
+                ${formatRupiah(item.price)}
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-zinc-400 bg-slate-50 dark:bg-zinc-900/70 px-2.5 py-1.5 rounded-lg">
+            <span>${escapeHtml(item.condition)} (${item.conditionScore}%)</span>
+            <span>📍 ${escapeHtml(item.location)}</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 pt-1">
+            <button type="button" onclick="toggleQuickSold('${item.id}')"
+              class="py-2 px-2 rounded-lg text-xs font-semibold border text-center transition ${
+                item.status === 'Terjual'
+                  ? 'border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-300 bg-slate-50 dark:bg-zinc-800'
+                  : 'border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300'
+              }">
+              ${item.status === 'Terjual' ? 'Aktifkan' : '✓ Laku'}
+            </button>
+            <button type="button" onclick="openProductModal('${item.id}')"
+              class="py-2 px-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-700 dark:text-zinc-200 text-center">
+              Edit Barang
+            </button>
+            <button type="button" onclick="requestDeleteProduct('${item.id}')"
+              class="py-2 px-2 rounded-lg text-xs font-semibold border border-red-200 dark:border-red-900/60 bg-red-50/70 dark:bg-red-950/40 text-red-600 dark:text-red-400 text-center">
+              Hapus
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderAdminTableRows(items) {
+      const tbody = document.getElementById('admin-table-body');
+      tbody.innerHTML = items.map(item => {
+        const savingsPercent = item.originalPrice && item.originalPrice > item.price
+          ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100)
+          : null;
+
+        return `
+          <tr class="hover:bg-slate-50/80 dark:hover:bg-zinc-900/40 transition group">
+            <!-- Col 1: Product Photo, Title & SKU -->
+            <td class="py-3.5 px-4">
+              <div class="flex items-center gap-3.5 max-w-md">
+                <img src="${item.image}" alt="${escapeHtml(item.title)}"
+                  onerror="this.src='https://placehold.co/160x120/e2e8f0/475569?text=Foto+Barang'"
+                  class="w-14 h-14 rounded-lg object-cover border border-slate-200 dark:border-zinc-700 shrink-0 bg-slate-100 dark:bg-zinc-800" />
+                <div class="min-w-0">
+                  <div class="text-[11px] font-mono text-slate-400 dark:text-zinc-500">${escapeHtml(item.sku || item.id)}</div>
+                  <div class="font-semibold text-slate-900 dark:text-zinc-100 text-xs sm:text-sm truncate" title="${escapeHtml(item.title)}">
+                    ${escapeHtml(item.title)}
+                  </div>
+                  <div class="text-xs text-slate-500 dark:text-zinc-400 truncate max-w-xs mt-0.5">
+                    ${escapeHtml(item.notes)}
+                  </div>
+                </div>
+              </div>
+            </td>
+
+            <!-- Col 2: Category & Location -->
+            <td class="py-3.5 px-4 whitespace-nowrap">
+              <div class="text-xs font-medium text-slate-800 dark:text-zinc-200">${escapeHtml(item.category)}</div>
+              <div class="text-[11px] text-slate-500 dark:text-zinc-400 flex items-center gap-1 mt-0.5">
+                <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                ${escapeHtml(item.location)}
+              </div>
+            </td>
+
+            <!-- Col 3: Physical Condition -->
+            <td class="py-3.5 px-4 whitespace-nowrap">
+              <div class="flex items-center gap-2">
+                <span class="font-mono text-xs font-bold px-1.5 py-0.5 rounded bg-slate-100 dark:bg-zinc-800 text-slate-800 dark:text-zinc-200 border border-slate-200 dark:border-zinc-700">
+                  ${item.conditionScore}%
+                </span>
+                <span class="text-xs text-slate-700 dark:text-zinc-300 font-medium">${escapeHtml(item.condition)}</span>
+              </div>
+            </td>
+
+            <!-- Col 4: Price -->
+            <td class="py-3.5 px-4 whitespace-nowrap tabular-nums">
+              <div class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-mono">
+                ${formatRupiah(item.price)}
+              </div>
+              ${savingsPercent ? `
+                <div class="text-[11px] text-slate-400 dark:text-zinc-500 flex items-center gap-1.5 mt-0.5">
+                  <span class="line-through">${formatRupiah(item.originalPrice)}</span>
+                  <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Hemat ${savingsPercent}%</span>
+                </div>
+              ` : ''}
+            </td>
+
+            <!-- Col 5: Status -->
+            <td class="py-3.5 px-4 whitespace-nowrap">
+              ${getStatusBadgeHTML(item.status)}
+            </td>
+
+            <!-- Col 6: Quick Actions -->
+            <td class="py-3.5 px-4 whitespace-nowrap text-right">
+              <div class="inline-flex items-center justify-end gap-1.5">
+                <button type="button" onclick="toggleQuickSold('${item.id}')"
+                  title="${item.status === 'Terjual' ? 'Kembalikan ke Tersedia' : 'Tandai Terjual'}"
+                  class="px-2.5 py-1.5 rounded-md text-xs font-medium border transition cursor-pointer ${
+                    item.status === 'Terjual'
+                      ? 'border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-400 hover:bg-slate-100 dark:hover:bg-zinc-800'
+                      : 'border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/70 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100'
+                  }">
+                  ${item.status === 'Terjual' ? 'Aktifkan Lagi' : 'Tandai Laku'}
+                </button>
+                <button type="button" onclick="openProductModal('${item.id}')" title="Edit Barang"
+                  class="px-2.5 py-1.5 rounded-md border border-slate-200 dark:border-zinc-700 text-xs font-medium text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer">
+                  Edit
+                </button>
+                <button type="button" onclick="requestDeleteProduct('${item.id}')" title="Hapus Produk"
+                  class="px-2.5 py-1.5 rounded-md border border-red-200 dark:border-red-900/60 bg-red-50/60 dark:bg-red-950/30 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-950/60 transition cursor-pointer">
+                  Hapus
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderAdminGridCards(items) {
+      const grid = document.getElementById('admin-grid-container');
+      grid.innerHTML = items.map(item => `
+        <div class="bg-white dark:bg-darkcard border border-slate-200/90 dark:border-darkborder rounded-xl overflow-hidden shadow-2xs flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-16/10 bg-slate-100 dark:bg-zinc-900 overflow-hidden border-b border-slate-200/60 dark:border-darkborder">
+              <img src="${item.image}" alt="${escapeHtml(item.title)}"
+                onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Foto+Barang'"
+                class="w-full h-full object-cover" />
+              <div class="absolute top-3 left-3">
+                ${getStatusBadgeHTML(item.status)}
+              </div>
+              <div class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded bg-slate-900/80 text-white text-[11px] font-mono">
+                Kondisi ${item.conditionScore}%
+              </div>
+            </div>
+
+            <div class="p-4 space-y-2">
+              <div class="flex items-center justify-between text-[11px] text-slate-400 dark:text-zinc-500">
+                <span class="font-mono">${escapeHtml(item.sku || item.id)}</span>
+                <span>${escapeHtml(item.location)}</span>
+              </div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-1">${escapeHtml(item.title)}</h3>
+              <div class="text-base font-bold text-brand-600 dark:text-emerald-400 font-mono tabular-nums">
+                ${formatRupiah(item.price)}
+              </div>
+              <p class="text-xs text-slate-500 dark:text-zinc-400 line-clamp-2 leading-relaxed">
+                ${escapeHtml(item.notes)}
+              </p>
+            </div>
+          </div>
+
+          <div class="px-4 py-3 bg-slate-50/70 dark:bg-zinc-900/50 border-t border-slate-200/80 dark:border-darkborder flex items-center justify-between gap-2">
+            <button type="button" onclick="toggleQuickSold('${item.id}')"
+              class="text-xs font-semibold text-slate-700 dark:text-zinc-300 hover:text-brand-600 dark:hover:text-emerald-400 cursor-pointer">
+              ${item.status === 'Terjual' ? 'Aktifkan Kembali' : '✓ Tandai Laku'}
+            </button>
+            <div class="flex items-center gap-1.5">
+              <button type="button" onclick="openProductModal('${item.id}')" class="px-2.5 py-1 rounded border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-slate-700 dark:text-zinc-200 hover:bg-slate-50 cursor-pointer">
+                Edit
+              </button>
+              <button type="button" onclick="requestDeleteProduct('${item.id}')" class="px-2.5 py-1 rounded border border-red-200 dark:border-red-900/50 bg-red-50/60 dark:bg-red-950/30 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-100 cursor-pointer">
+                Hapus
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // --- RENDER PUBLIC STOREFRONT PREVIEW ---
+    function setStoreCategory(category) {
+      currentStoreCategory = category;
+      document.querySelectorAll('.store-cat-pill').forEach(btn => {
+        if (btn.dataset.cat === category) {
+          btn.className = 'store-cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white dark:bg-white dark:text-zinc-900 shrink-0 transition';
+        } else {
+          btn.className = 'store-cat-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder text-slate-600 dark:text-zinc-300 hover:border-slate-400 shrink-0 transition';
+        }
+      });
+      renderStorefront();
+    }
+
+    function renderStorefront() {
+      const hideSold = document.getElementById('store-hide-sold')?.checked || false;
+      const grid = document.getElementById('storefront-grid');
+      if (!grid) return;
+
+      const filtered = inventoryItems.filter(item => {
+        const matchCat = currentStoreCategory === 'ALL' || item.category === currentStoreCategory;
+        const matchSold = !hideSold || item.status !== 'Terjual';
+        return matchCat && matchSold;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-xl p-10 text-center">
+            <div class="text-sm font-bold text-slate-900 dark:text-white">Belum ada barang bekas di etalase ini</div>
+            <p class="text-xs text-slate-500 dark:text-zinc-400 mt-1">Tambahkan barang bekas baru melalui Dashboard Admin.</p>
+            <button type="button" onclick="openProductModal()" class="mt-4 px-4 py-2 rounded-lg bg-brand-600 text-white text-xs font-semibold hover:bg-brand-700 transition cursor-pointer">
+              + Tambah Barang Bekas
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => {
+        const isSold = item.status === 'Terjual';
+        const savingsPercent = item.originalPrice && item.originalPrice > item.price
+          ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100)
+          : null;
+
+        return `
+          <div onclick="openDetailModal('${item.id}')" class="group bg-white dark:bg-darkcard border border-slate-200/90 dark:border-darkborder rounded-xl overflow-hidden shadow-2xs hover:shadow-md hover:border-slate-300 dark:hover:border-zinc-700 transition cursor-pointer flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-4/3 bg-slate-100 dark:bg-zinc-900 overflow-hidden border-b border-slate-100 dark:border-darkborder">
+                <img src="${item.image}" alt="${escapeHtml(item.title)}"
+                  onerror="this.src='https://placehold.co/600x450/e2e8f0/475569?text=Foto+Barang'"
+                  class="w-full h-full object-cover group-hover:scale-103 transition duration-300 ${isSold ? 'opacity-60 grayscale' : ''}" />
+                <div class="absolute top-3 left-3">
+                  ${getStatusBadgeHTML(item.status)}
+                </div>
+                ${savingsPercent ? `
+                  <div class="absolute top-3 right-3 px-2 py-0.5 rounded bg-emerald-600 text-white text-[11px] font-bold">
+                    Hemat ${savingsPercent}%
+                  </div>
+                ` : ''}
+                <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between">
+                  <span class="px-2 py-0.5 rounded bg-slate-900/80 backdrop-blur-xs text-white text-[11px] font-medium">
+                    ${escapeHtml(item.condition)} (${item.conditionScore}%)
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-4">
+                <div class="text-[11px] font-medium text-slate-400 dark:text-zinc-500 flex items-center justify-between">
+                  <span>${escapeHtml(item.category)}</span>
+                  <span>${escapeHtml(item.location)}</span>
+                </div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm mt-1 line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-emerald-400 transition">
+                  ${escapeHtml(item.title)}
+                </h3>
+                <div class="mt-2.5 flex items-baseline gap-2 tabular-nums">
+                  <span class="text-base font-bold text-slate-900 dark:text-white font-mono">${formatRupiah(item.price)}</span>
+                  ${item.originalPrice ? `<span class="text-xs text-slate-400 line-through font-mono">${formatRupiah(item.originalPrice)}</span>` : ''}
+                </div>
+                <p class="mt-2 text-xs text-slate-500 dark:text-zinc-400 line-clamp-2 leading-relaxed">
+                  ${escapeHtml(item.notes)}
+                </p>
+              </div>
+            </div>
+
+            <div class="px-4 py-3 border-t border-slate-100 dark:border-darkborder bg-slate-50/50 dark:bg-zinc-900/40 flex items-center justify-between text-xs">
+              <span class="font-medium text-brand-600 dark:text-emerald-400">Lihat Laporan Kondisi →</span>
+              <span class="font-mono text-[11px] text-slate-400">${escapeHtml(item.sku || item.id)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // --- PRODUCT ADD / EDIT MODAL & PHOTO UPLOAD ---
+    function openProductModal(editId = null) {
+      const modal = document.getElementById('product-modal');
+      const titleEl = document.getElementById('modal-title');
+      const form = document.getElementById('product-form');
+      form.reset();
+
+      if (editId) {
+        const item = inventoryItems.find(i => i.id === editId);
+        if (!item) return;
+        titleEl.textContent = `Edit Barang — ${item.sku || item.id}`;
+        document.getElementById('prod-id').value = item.id;
+        document.getElementById('prod-title').value = item.title;
+        document.getElementById('prod-category').value = item.category;
+        document.getElementById('prod-price').value = item.price;
+        document.getElementById('prod-original-price').value = item.originalPrice || '';
+        document.getElementById('prod-location').value = item.location;
+        document.getElementById('prod-condition').value = item.condition;
+        document.getElementById('prod-score').value = item.conditionScore || 90;
+        document.getElementById('prod-status').value = item.status;
+        document.getElementById('prod-notes').value = item.notes;
+        document.getElementById('prod-image-url').value = item.image.startsWith('data:') ? '' : item.image;
+        document.getElementById('prod-image-preview').src = item.image;
+      } else {
+        titleEl.textContent = 'Tambah Barang Bekas Baru';
+        document.getElementById('prod-id').value = '';
+        const defaultPhoto = 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80';
+        document.getElementById('prod-image-url').value = defaultPhoto;
+        document.getElementById('prod-image-preview').src = defaultPhoto;
+        document.getElementById('prod-location').value = 'Bekasi Selatan';
+        document.getElementById('prod-score').value = 95;
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProductModal() {
+      const modal = document.getElementById('product-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function setSamplePhoto(url) {
+      document.getElementById('prod-image-url').value = url;
+      document.getElementById('prod-image-preview').src = url;
+    }
+
+    function updatePreviewFromUrl(url) {
+      if (url && url.trim().length > 8) {
+        document.getElementById('prod-image-preview').src = url.trim();
+      }
+    }
+
+    // Compress and convert uploaded photo to Base64 via Canvas so it persists reliably in localStorage
+    function handleImageUpload(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 640;
+          const MAX_HEIGHT = 640;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height = Math.round((height * MAX_WIDTH) / width);
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width = Math.round((width * MAX_HEIGHT) / height);
+              height = MAX_HEIGHT;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.78);
+          document.getElementById('prod-image-preview').src = compressedDataUrl;
+          document.getElementById('prod-image-url').value = '';
+          showToast('Foto barang siap disimpan permanen', 'success');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleSaveProduct(event) {
+      event.preventDefault();
+      const editId = document.getElementById('prod-id').value;
+      const title = document.getElementById('prod-title').value.trim();
+      const category = document.getElementById('prod-category').value;
+      const price = Number(document.getElementById('prod-price').value);
+      const originalPrice = Number(document.getElementById('prod-original-price').value) || null;
+      const location = document.getElementById('prod-location').value.trim();
+      const condition = document.getElementById('prod-condition').value;
+      const conditionScore = Math.min(100, Math.max(40, Number(document.getElementById('prod-score').value) || 90));
+      const status = document.getElementById('prod-status').value;
+      const notes = document.getElementById('prod-notes').value.trim();
+      const urlInput = document.getElementById('prod-image-url').value.trim();
+      const previewSrc = urlInput.length > 8 ? urlInput : document.getElementById('prod-image-preview').src;
+
+      if (!title || !price) {
+        showToast('Mohon lengkapi nama dan harga barang', 'error');
+        return;
+      }
+
+      if (editId) {
+        const idx = inventoryItems.findIndex(i => i.id === editId);
+        if (idx !== -1) {
+          inventoryItems[idx] = {
+            ...inventoryItems[idx],
+            title,
+            category,
+            price,
+            originalPrice,
+            location,
+            condition,
+            conditionScore,
+            status,
+            notes,
+            image: previewSrc
+          };
+          showToast('Perubahan barang berhasil disimpan permanen', 'success');
+        }
+      } else {
+        const prefix = category.substring(0, 3).toUpperCase();
+        const randomNum = Math.floor(10 + Math.random() * 89);
+        const newItem = {
+          id: 'PRD-' + Date.now().toString().slice(-5),
+          sku: `BB-${prefix}-${randomNum}`,
+          title,
+          category,
+          price,
+          originalPrice,
+          location,
+          condition,
+          conditionScore,
+          status,
+          notes,
+          image: previewSrc,
+          createdAt: new Date().toISOString().slice(0, 10)
+        };
+        inventoryItems.unshift(newItem);
+        showToast('Barang baru berhasil ditambahkan & disimpan', 'success');
+      }
+
+      saveInventoryData();
+      // Reset filters if needed so user immediately sees their newly uploaded item
+      resetFilters();
+      closeProductModal();
+      renderAll();
+    }
+
+    // --- QUICK ACTIONS (SOLD TOGGLE & DELETE WITH MODAL CONFIRMATION) ---
+    function toggleQuickSold(id) {
+      const item = inventoryItems.find(i => i.id === id);
+      if (!item) return;
+
+      item.status = item.status === 'Terjual' ? 'Tersedia' : 'Terjual';
+      saveInventoryData();
+      renderAll();
+      showToast(
+        item.status === 'Terjual'
+          ? `"${item.title.slice(0, 28)}..." ditandai Terjual`
+          : `"${item.title.slice(0, 28)}..." diaktifkan kembali`,
+        'success'
+      );
+    }
+
+    function requestDeleteProduct(id) {
+      const item = inventoryItems.find(i => i.id === id);
+      if (!item) return;
+
+      pendingDeleteId = id;
+      const desc = document.getElementById('delete-modal-desc');
+      if (desc) {
+        desc.textContent = `Apakah Anda yakin ingin menghapus "${item.title}" (${item.sku || item.id}) dari daftar barang bekas?`;
+      }
+      const modal = document.getElementById('delete-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDeleteModal() {
+      pendingDeleteId = null;
+      const modal = document.getElementById('delete-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function confirmDeleteProduct() {
+      if (!pendingDeleteId) return;
+      const item = inventoryItems.find(i => i.id === pendingDeleteId);
+      inventoryItems = inventoryItems.filter(i => i.id !== pendingDeleteId);
+      saveInventoryData();
+      closeDeleteModal();
+      renderAll();
+      showToast(`Produk "${item ? item.title.slice(0, 24) : ''}" berhasil dihapus`, 'info');
+    }
+
+    // --- BUYER DETAIL PREVIEW MODAL ---
+    function openDetailModal(id) {
+      const item = inventoryItems.find(i => i.id === id);
+      if (!item) return;
+
+      const modal = document.getElementById('detail-modal');
+      const content = document.getElementById('detail-modal-content');
+
+      content.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-12">
+          <div class="md:col-span-6 bg-slate-100 dark:bg-zinc-900 relative">
+            <img src="${item.image}" alt="${escapeHtml(item.title)}" class="w-full h-full object-cover max-h-96 md:max-h-full" />
+            <div class="absolute top-3 left-3">
+              ${getStatusBadgeHTML(item.status)}
+            </div>
+          </div>
+          <div class="md:col-span-6 p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs text-slate-400">
+                <span class="font-mono">${escapeHtml(item.sku || item.id)}</span>
+                <span>📍 ${escapeHtml(item.location)}</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">${escapeHtml(item.title)}</h3>
+              <div class="text-xl font-bold text-brand-600 dark:text-emerald-400 font-mono tabular-nums">
+                ${formatRupiah(item.price)}
+              </div>
+
+              <div class="p-3 rounded-lg bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 space-y-1.5">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500 dark:text-zinc-400">Hasil Kurasi Fisik:</span>
+                  <span class="font-semibold text-slate-900 dark:text-white">${escapeHtml(item.condition)} (${item.conditionScore}%)</span>
+                </div>
+                <div class="text-xs text-slate-600 dark:text-zinc-300 leading-relaxed pt-1 border-t border-slate-200/70 dark:border-zinc-800">
+                  ${escapeHtml(item.notes)}
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-200 dark:border-darkborder flex items-center justify-between gap-2">
+              <button type="button" onclick="closeDetailModal(); openProductModal('${item.id}')"
+                class="px-3.5 py-2 rounded-lg border border-slate-200 dark:border-zinc-700 text-xs font-semibold text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800">
+                Edit di Admin
+              </button>
+              <button type="button" onclick="closeDetailModal()"
+                class="px-4 py-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-semibold">
+                Tutup Pratinjau
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDetailModal() {
+      const modal = document.getElementById('detail-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // --- VERCEL MODAL ---
+    function openVercelModal() {
+      const modal = document.getElementById('vercel-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeVercelModal() {
+      const modal = document.getElementById('vercel-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // --- GENERATOR & DOWNLOADER FILE TERPISAH (HTML, CSS, JS, VERCEL.JSON) ---
+    function downloadBlobFile(filename, content, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function downloadSeparatedFile(fileType) {
+      if (fileType === 'vercel.json') {
+        const vercelConfig = JSON.stringify({
+          "version": 2,
+          "cleanUrls": true,
+          "rewrites": [
+            { "source": "/(.*)", "destination": "/index.html" }
+          ]
+        }, null, 2);
+        downloadBlobFile('vercel.json', vercelConfig, 'application/json');
+        showToast('File vercel.json berhasil diunduh', 'success');
+        return;
+      }
+
+      if (fileType === 'style.css') {
+        const cssContent = `/* Barang Bekas - Enterprise Stylesheet (style.css) */
+body {
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
+.theme-transition {
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+`;
+        downloadBlobFile('style.css', cssContent, 'text/css');
+        showToast('File style.css berhasil diunduh', 'success');
+        return;
+      }
+
+      if (fileType === 'app.js') {
+        const scriptEl = document.getElementById('main-app-script');
+        const jsContent = scriptEl ? scriptEl.textContent : '';
+        downloadBlobFile('app.js', jsContent.trim(), 'application/javascript');
+        showToast('File app.js berhasil diunduh', 'success');
+        return;
+      }
+
+      if (fileType === 'index.html') {
+        // Clone current document and replace inline style/script with external style.css & app.js
+        const docClone = document.documentElement.cloneNode(true);
+        const inlineStyles = docClone.querySelectorAll('head style');
+        inlineStyles.forEach(s => s.remove());
+
+        const headEl = docClone.querySelector('head');
+        const linkEl = document.createElement('link');
+        linkEl.rel = 'stylesheet';
+        linkEl.href = './style.css';
+        headEl.appendChild(linkEl);
+
+        const mainScript = docClone.querySelector('#main-app-script');
+        if (mainScript) {
+          mainScript.textContent = '';
+          mainScript.setAttribute('src', './app.js');
+        }
+
+        const htmlString = '<!DOCTYPE html>\n' + docClone.outerHTML;
+        downloadBlobFile('index.html', htmlString, 'text/html');
+        showToast('File index.html (terhubung ke style.css & app.js) diunduh', 'success');
+      }
+    }
+
+    function downloadAllSeparatedFiles() {
+      downloadSeparatedFile('index.html');
+      setTimeout(() => downloadSeparatedFile('style.css'), 250);
+      setTimeout(() => downloadSeparatedFile('app.js'), 500);
+      setTimeout(() => downloadSeparatedFile('vercel.json'), 750);
+    }
+
+    // --- TOAST NOTIFICATION HELPER ---
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      let borderColor = 'border-slate-200 dark:border-zinc-700';
+      let dotColor = 'bg-brand-500';
+      if (type === 'error') {
+        borderColor = 'border-red-300 dark:border-red-800';
+        dotColor = 'bg-red-500';
+      }
+
+      toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-lg bg-white dark:bg-zinc-900 border ${borderColor} shadow-lg text-xs font-semibold text-slate-800 dark:text-zinc-100 transition-all duration-200`;
+      toast.innerHTML = `
+        <span class="w-2 h-2 rounded-full ${dotColor} shrink-0"></span>
+        <span>${escapeHtml(message)}</span>
+      `;
+
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(6px)';
+        setTimeout(() => toast.remove(), 200);
+      }, 2800);
+    }
+
+    // --- XSS ESCAPE HELPER ---
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>
